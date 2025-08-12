@@ -1,0 +1,113 @@
+[project]
+name = "subject-researcher-mcp"
+version = "2.0.0"
+description = "Enhanced Subject Researcher MCP - Iterative target-driven research with multi-vertical search, quality metrics, and sophisticated claim mining"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Enhanced Subject Researcher Team", email = "research-support@your-org.com"}
+]
+keywords = [
+    "mcp", "research", "ai", "web-search", "iterative-research", 
+    "claim-mining", "credibility-scoring", "multi-vertical-search", 
+    "quality-metrics", "evidence-based"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=0.4.0",
+    "httpx>=0.24.0",
+    "duckduckgo-search>=8.0.0",
+    "beautifulsoup4>=4.12.0",
+    "wikipedia-api>=0.8.0",
+    "lxml>=4.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "bandit>=1.7.0",
+    "safety>=2.3.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
+]
+ai = [
+    "google-generativeai>=0.3.0",
+]
+performance = [
+    "aiofiles>=23.0.0",
+    "uvloop>=0.17.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/subject-researcher-mcp"
+Documentation = "https://github.com/your-org/subject-researcher-mcp/wiki"
+Repository = "https://github.com/your-org/subject-researcher-mcp.git"
+Issues = "https://github.com/your-org/subject-researcher-mcp/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+subject-researcher-mcp = "subject_researcher_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/subject_researcher_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+    "e2e: marks tests as end-to-end tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008", "C901"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*" = ["B011", "B018", "E501"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/test_*.py", "*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+]

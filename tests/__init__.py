@@ -1,0 +1,1 @@
+"""Test suite for Subject Researcher MCP Server."""

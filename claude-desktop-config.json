@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "subject-researcher": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python", 
+        "/home/eladbenhaim/dev/mcp/subject-researcher-mcp/src/subject_researcher_mcp/server.py"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "your-gemini-api-key-here"
+      }
+    }
+  }
+}
