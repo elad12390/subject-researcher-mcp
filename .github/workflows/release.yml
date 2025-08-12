@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   create-release:
     name: Create Release
@@ -21,17 +25,30 @@ jobs:
       run: |
         # Generate changelog from git history
         echo "## What's Changed" > CHANGELOG.md
-        git log --pretty=format:"- %s (%h)" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> CHANGELOG.md
-        echo "" >> CHANGELOG.md
-        echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/$(git describe --tags --abbrev=0 HEAD^)...${GITHUB_REF#refs/tags/}" >> CHANGELOG.md
+        
+        # Check if this is the first tag
+        if git describe --tags --abbrev=0 HEAD^ 2>/dev/null; then
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^)
+          git log --pretty=format:"- %s (%h)" $PREV_TAG..HEAD >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/$PREV_TAG...${GITHUB_REF#refs/tags/}" >> CHANGELOG.md
+        else
+          echo "🎉 Initial release of Enhanced Subject Researcher MCP!" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "### Features" >> CHANGELOG.md
+          echo "- Iterative target-driven research engine with 11-phase methodology" >> CHANGELOG.md
+          echo "- Real web search integration with multiple source types" >> CHANGELOG.md
+          echo "- Quality metrics tracking (coverage, recency, novelty, agreement)" >> CHANGELOG.md
+          echo "- Sophisticated claim mining and credibility analysis" >> CHANGELOG.md
+          echo "- Configurable research parameters and stop criteria" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "**Full Changelog**: https://github.com/${{ github.repository }}/commits/${GITHUB_REF#refs/tags/}" >> CHANGELOG.md
+        fi
         
     - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        name: Release ${{ github.ref_name }}
         body_path: CHANGELOG.md
         draft: false
         prerelease: false
