@@ -8,6 +8,10 @@
 
 > **Advanced iterative target-driven research with multi-vertical search, sophisticated claim mining, and evidence-based synthesis**
 
+## About
+
+General‑purpose developer tool for iterative research. **No customer data, proprietary prompts, or core product logic.**
+
 ## 📦 Installation
 
 ### 🐳 Docker (Recommended)
@@ -546,9 +550,13 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 - Include docstrings for public APIs
 - Maintain test coverage above 80%
 
+## 🔒 Safety & Privacy
+
+Do not upload PII or confidential data. See SECURITY.md for security practices and vulnerability reporting.
+
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT (see LICENSE and NOTICE).
 
 ## 🙏 Acknowledgments
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 Subject Researcher MCP Server - Advanced Research Engine
 Implements comprehensive 11-phase research methodology for deep analysis and synthesis.

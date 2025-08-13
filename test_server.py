@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 #!/usr/bin/env python3
 """Simple test script for the Subject Researcher MCP Server."""
 

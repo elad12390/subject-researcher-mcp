@@ -5,7 +5,10 @@ description = "Enhanced Subject Researcher MCP - Iterative target-driven researc
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Enhanced Subject Researcher Team", email = "research-support@your-org.com"}
+    {name = "Progressus Software Ltd.", email = "oss@progressus-software.com"}
+]
+maintainers = [
+    {name = "Progressus Software Ltd.", email = "oss@progressus-software.com"}
 ]
 keywords = [
     "mcp", "research", "ai", "web-search", "iterative-research", 
@@ -58,12 +61,12 @@ performance = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/elad12390/subject-researcher-mcp"
-Documentation = "https://github.com/elad12390/subject-researcher-mcp/wiki"
-Repository = "https://github.com/elad12390/subject-researcher-mcp.git"
-Issues = "https://github.com/elad12390/subject-researcher-mcp/issues"
+Homepage = "https://github.com/stanley-marketing/subject-researcher-mcp"
+Documentation = "https://github.com/stanley-marketing/subject-researcher-mcp/wiki"
+Repository = "https://github.com/stanley-marketing/subject-researcher-mcp.git"
+Issues = "https://github.com/stanley-marketing/subject-researcher-mcp/issues"
 PyPI = "https://pypi.org/project/subject-researcher-mcp/"
-Docker = "https://hub.docker.com/r/eladiut/subject-researcher-mcp"
+Docker = "https://hub.docker.com/r/progressus/subject-researcher-mcp"
 
 [build-system]
 requires = ["hatchling"]

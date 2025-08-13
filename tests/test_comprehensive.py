@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 #!/usr/bin/env python3
 """Comprehensive test suite for Subject Researcher MCP Server."""
 

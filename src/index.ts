@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import { FastMCP } from "fastmcp";
 import { z } from "zod";
 import { search } from "duck-duck-scrape";

@@ -1,0 +1,51 @@
+Found 25 known vulnerabilities in 12 packages
+Name         Version ID                  Fix Versions
+------------ ------- ------------------- ------------
+babel        2.8.0   PYSEC-2021-421      2.9.1
+cryptography 3.4.8   PYSEC-2023-254      41.0.6
+cryptography 3.4.8   GHSA-w7pp-m8wf-vj6r 39.0.1
+cryptography 3.4.8   GHSA-x4qr-2fvf-3mr5 39.0.1
+cryptography 3.4.8   GHSA-5cpq-8wj7-hf2v 41.0.0
+cryptography 3.4.8   GHSA-jm77-qphf-c4w8 41.0.3
+cryptography 3.4.8   GHSA-3ww4-gg4f-jr7f 42.0.0
+cryptography 3.4.8   GHSA-v8gr-m533-ghj9 41.0.4
+cryptography 3.4.8   GHSA-9v9h-cgj8-h64p 42.0.2
+h11          0.14.0  GHSA-vqfr-h8mv-ghfj 0.16.0
+jinja2       3.1.5   GHSA-cpwx-vrp4-4pq7 3.1.6
+oauthlib     3.2.0   PYSEC-2022-269      3.2.1
+pillow       11.2.1  PYSEC-2025-61       11.3.0
+pip          22.0.2  PYSEC-2023-228      23.3
+pyjwt        2.3.0   PYSEC-2022-202      2.4.0
+setuptools   59.6.0  PYSEC-2022-43012    65.5.1
+setuptools   59.6.0  PYSEC-2025-49       78.1.1
+tornado      6.1     PYSEC-2023-75       6.3.2
+tornado      6.1     GHSA-qppv-j76h-2rpx 6.3.3
+tornado      6.1     GHSA-753j-mpmx-qq6g 6.4.1
+tornado      6.1     GHSA-w235-7p84-xx57 6.4.1
+tornado      6.1     GHSA-7cx3-6m66-7c5m 6.5
+tornado      6.1     GHSA-8w49-h785-mj3c 6.4.2
+urllib3      1.26.20 GHSA-pq67-6m6q-mj2v 2.5.0
+wheel        0.37.1  PYSEC-2022-43017    0.38.1
+Name                  Skip Reason
+--------------------- ---------------------------------------------------------------------------------------
+bcc                   Dependency not found on PyPI and could not be audited: bcc (0.18.0)
+brlapi                Dependency not found on PyPI and could not be audited: brlapi (0.8.3)
+chrome-gnome-shell    Dependency not found on PyPI and could not be audited: chrome-gnome-shell (0.0.0)
+command-not-found     Dependency not found on PyPI and could not be audited: command-not-found (0.3)
+cupshelpers           Dependency not found on PyPI and could not be audited: cupshelpers (1.0)
+defer                 Dependency not found on PyPI and could not be audited: defer (1.0.6)
+hidpidaemon           Dependency not found on PyPI and could not be audited: hidpidaemon (18.4.6)
+iotop                 Dependency not found on PyPI and could not be audited: iotop (0.6)
+kernelstub            Dependency not found on PyPI and could not be audited: kernelstub (3.1.4)
+language-selector     Dependency not found on PyPI and could not be audited: language-selector (0.1)
+louis                 Dependency not found on PyPI and could not be audited: louis (3.20.0)
+pop-transition        Dependency not found on PyPI and could not be audited: pop-transition (1.1.2)
+python-apt            Dependency not found on PyPI and could not be audited: python-apt (2.4.0+ubuntu4)
+python-debian         Dependency not found on PyPI and could not be audited: python-debian (0.1.43+ubuntu1.1)
+repolib               Dependency not found on PyPI and could not be audited: repolib (2.2.1)
+repoman               Dependency not found on PyPI and could not be audited: repoman (1.4.0)
+sessioninstaller      Dependency not found on PyPI and could not be audited: sessioninstaller (0.0.0)
+ubuntu-drivers-common Dependency not found on PyPI and could not be audited: ubuntu-drivers-common (0.0.0)
+ubuntu-pro-client     Dependency not found on PyPI and could not be audited: ubuntu-pro-client (8001)
+ufw                   Dependency not found on PyPI and could not be audited: ufw (0.36.1)
+xkit                  Dependency not found on PyPI and could not be audited: xkit (0.0.0)

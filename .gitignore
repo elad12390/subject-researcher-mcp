@@ -116,6 +116,10 @@ Thumbs.db
 *api_key*
 *secret*
 *token*
+*.pem
+*.key
+*.p12
+*.sqlite
 
 # Testing
 .pytest_cache/

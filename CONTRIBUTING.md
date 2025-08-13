@@ -49,6 +49,8 @@ pip install pytest pytest-asyncio ruff build bandit safety
    - Follow the coding standards below
    - Add tests for new functionality
    - Update documentation as needed
+   - Sign commits with DCO (`git commit -s`)
+   - No secrets or proprietary data in issues/PRs
 
 3. **Test your changes**:
    ```bash
@@ -68,7 +70,7 @@ pip install pytest pytest-asyncio ruff build bandit safety
 4. **Commit your changes**:
    ```bash
    git add .
-   git commit -m "feat: add your feature description"
+   git commit -s -m "feat: add your feature description"
    ```
 
 5. **Push and create a PR**:
