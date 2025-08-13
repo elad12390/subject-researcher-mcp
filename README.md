@@ -41,7 +41,25 @@
 
 ## 🚀 Quick Start
 
-### Installation
+### 🐳 Recommended: Docker Installation (Easiest)
+
+The easiest way to use the Enhanced Subject Researcher MCP is with Docker - no Python dependencies or environment setup required!
+
+**Why Docker?**
+- ✅ **Zero setup** - No Python environment configuration needed
+- ✅ **Consistent** - Works the same across all systems (Windows, macOS, Linux)
+- ✅ **Isolated** - No conflicts with your existing Python packages
+- ✅ **Latest version** - Always get the most recent release automatically
+
+```bash
+# Pull the latest Docker image
+docker pull elad12390/subject-researcher-mcp:latest
+
+# Test the server (optional)
+docker run --rm -i elad12390/subject-researcher-mcp:latest
+```
+
+### Alternative: Python Installation
 
 ```bash
 pip install subject-researcher-mcp
@@ -89,9 +107,11 @@ asyncio.run(research_example())
 
 ### Claude Desktop
 
-1. **Install the package:**
+**🐳 Recommended: Docker Method (Easiest)**
+
+1. **Pull the Docker image:**
    ```bash
-   pip install subject-researcher-mcp
+   docker pull elad12390/subject-researcher-mcp:latest
    ```
 
 2. **Configure Claude Desktop:**
@@ -104,10 +124,12 @@ asyncio.run(research_example())
    {
      "mcpServers": {
        "subject-researcher": {
-         "command": "python",
+         "command": "docker",
          "args": [
-           "-m", 
-           "subject_researcher_mcp.server"
+           "run",
+           "--rm",
+           "-i",
+           "elad12390/subject-researcher-mcp:latest"
          ]
        }
      }
@@ -116,11 +138,32 @@ asyncio.run(research_example())
 
 3. **Restart Claude Desktop** and look for the MCP server indicator (🔌) in the chat input.
 
-### Cursor IDE
+**📦 Alternative: Python Method**
 
 1. **Install the package:**
    ```bash
    pip install subject-researcher-mcp
+   ```
+
+2. **Configure Claude Desktop:**
+   ```json
+   {
+     "mcpServers": {
+       "subject-researcher": {
+         "command": "python",
+         "args": ["-m", "subject_researcher_mcp.server"]
+       }
+     }
+   }
+   ```
+
+### Cursor IDE
+
+**🐳 Recommended: Docker Method (Easiest)**
+
+1. **Pull the Docker image:**
+   ```bash
+   docker pull elad12390/subject-researcher-mcp:latest
    ```
 
 2. **Configure Cursor:**
@@ -131,10 +174,12 @@ asyncio.run(research_example())
    {
      "mcpServers": {
        "subject-researcher": {
-         "command": "python",
+         "command": "docker",
          "args": [
-           "-m", 
-           "subject_researcher_mcp.server"
+           "run",
+           "--rm", 
+           "-i",
+           "elad12390/subject-researcher-mcp:latest"
          ],
          "enabled": true
        }
@@ -147,11 +192,33 @@ asyncio.run(research_example())
    - MCP tools will be listed under "Available Tools"
    - Ask for research using natural language
 
-### OpenCode
+**📦 Alternative: Python Method**
 
 1. **Install the package:**
    ```bash
    pip install subject-researcher-mcp
+   ```
+
+2. **Configure Cursor:**
+   ```json
+   {
+     "mcpServers": {
+       "subject-researcher": {
+         "command": "python",
+         "args": ["-m", "subject_researcher_mcp.server"],
+         "enabled": true
+       }
+     }
+   }
+   ```
+
+### OpenCode
+
+**🐳 Recommended: Docker Method (Easiest)**
+
+1. **Pull the Docker image:**
+   ```bash
+   docker pull elad12390/subject-researcher-mcp:latest
    ```
 
 2. **Configure OpenCode:**
@@ -165,9 +232,11 @@ asyncio.run(research_example())
        "subject-researcher": {
          "type": "local",
          "command": [
-           "python", 
-           "-m", 
-           "subject_researcher_mcp.server"
+           "docker",
+           "run",
+           "--rm",
+           "-i", 
+           "elad12390/subject-researcher-mcp:latest"
          ],
          "enabled": true
        }
@@ -178,6 +247,27 @@ asyncio.run(research_example())
 3. **Usage in OpenCode:**
    - MCP tools are automatically available to the LLM
    - Ask for research and OpenCode will use the tools as needed
+
+**📦 Alternative: Python Method**
+
+1. **Install the package:**
+   ```bash
+   pip install subject-researcher-mcp
+   ```
+
+2. **Configure OpenCode:**
+   ```json
+   {
+     "$schema": "https://opencode.ai/config.json",
+     "mcp": {
+       "subject-researcher": {
+         "type": "local",
+         "command": ["python", "-m", "subject_researcher_mcp.server"],
+         "enabled": true
+       }
+     }
+   }
+   ```
 
 ## 📖 MCP Server Usage
 
