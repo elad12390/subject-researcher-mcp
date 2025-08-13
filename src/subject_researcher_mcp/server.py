@@ -8,6 +8,7 @@ import asyncio
 import logging
 import os
 import sys
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from mcp.server import NotificationOptions, Server
@@ -35,19 +36,52 @@ async def get_research_engine() -> ResearchEngine:
         research_engine = ResearchEngine(gemini_api_key)
     return research_engine
 
+def validate_date_range(start_date: str, end_date: str) -> tuple[datetime, datetime, int]:
+    """Validate and parse date range. Returns (start_dt, end_dt, recency_months)."""
+    try:
+        start_dt = datetime.strptime(start_date, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        end_dt = datetime.strptime(end_date, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+    except ValueError as e:
+        raise ValueError(f"Invalid date format. Use YYYY-MM-DD format. Error: {e}")
+    
+    if start_dt > end_dt:
+        raise ValueError("Start date cannot be after end date")
+    
+    current_date = datetime.now(timezone.utc)
+    if end_dt > current_date:
+        raise ValueError(f"End date cannot be in the future. Current date is {current_date.strftime('%Y-%m-%d')}")
+    
+    # Calculate months for recency preference
+    date_diff = (current_date - start_dt).days
+    recency_months = max(1, min(60, date_diff // 30))
+    
+    return start_dt, end_dt, recency_months
+
 @server.list_tools()
 async def handle_list_tools() -> list[types.Tool]:
     """List available research tools."""
+    current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    
     return [
         types.Tool(
             name="comprehensive_research",
-            description="Conduct iterative target-driven research with quality meters (coverage, recency, novelty, agreement, contradictions). Uses stop criteria and automatic widening when stagnation occurs. Returns detailed analysis with inline citations and evidence-based recommendations.",
+            description=f"Conduct iterative target-driven research with quality meters (coverage, recency, novelty, agreement, contradictions). Uses stop criteria and automatic widening when stagnation occurs. Returns detailed analysis with inline citations and evidence-based recommendations. IMPORTANT: Current date is {current_date}. Use this to determine appropriate date ranges.",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "subject": {
                         "type": "string",
                         "description": "The research subject or topic to investigate comprehensively"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": f"Research start date (YYYY-MM-DD format). Current date is {current_date}. Use this to determine appropriate date ranges."
+                    },
+                    "end_date": {
+                        "type": "string", 
+                        "format": "date",
+                        "description": f"Research end date (YYYY-MM-DD format). Current date is {current_date}. Can use today's date if researching up to present."
                     },
                     "objective": {
                         "type": "string",
@@ -100,18 +134,28 @@ async def handle_list_tools() -> list[types.Tool]:
                         "additionalProperties": True
                     }
                 },
-                "required": ["subject"]
+                "required": ["subject", "start_date", "end_date"]
             }
         ),
         types.Tool(
             name="quick_research",
-            description="Perform quick research for rapid insights. Uses simplified methodology for faster results when comprehensive analysis isn't needed.",
+            description=f"Perform quick research for rapid insights. Uses simplified methodology for faster results when comprehensive analysis isn't needed. IMPORTANT: Current date is {current_date}. Use this to determine appropriate date ranges.",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "subject": {
                         "type": "string",
                         "description": "The subject to research quickly"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date", 
+                        "description": f"Research start date (YYYY-MM-DD format). Current date is {current_date}."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": f"Research end date (YYYY-MM-DD format). Current date is {current_date}. Can use today's date if researching up to present."
                     },
                     "focus": {
                         "type": "string",
@@ -126,18 +170,28 @@ async def handle_list_tools() -> list[types.Tool]:
                         "maximum": 20
                     }
                 },
-                "required": ["subject"]
+                "required": ["subject", "start_date", "end_date"]
             }
         ),
         types.Tool(
             name="best_options_research",
-            description="Research and evaluate the best options/solutions for a specific need. Applies scoring rubrics and gate rules to rank alternatives with quantified outcomes.",
+            description=f"Research and evaluate the best options/solutions for a specific need. Applies scoring rubrics and gate rules to rank alternatives with quantified outcomes. IMPORTANT: Current date is {current_date}. Use this to determine appropriate date ranges.",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "need": {
                         "type": "string",
                         "description": "What you need the best options for (e.g., 'fastest build tools for large TypeScript projects')"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": f"Research start date (YYYY-MM-DD format). Current date is {current_date}."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date", 
+                        "description": f"Research end date (YYYY-MM-DD format). Current date is {current_date}. Can use today's date if researching up to present."
                     },
                     "criteria": {
                         "type": "array",
@@ -158,7 +212,7 @@ async def handle_list_tools() -> list[types.Tool]:
                         "maximum": 10
                     }
                 },
-                "required": ["need"]
+                "required": ["need", "start_date", "end_date"]
             }
         )
     ]
@@ -176,8 +230,18 @@ async def handle_call_tool(
         
         if name == "comprehensive_research":
             subject = arguments.get("subject", "")
+            start_date = arguments.get("start_date", "")
+            end_date = arguments.get("end_date", "")
+            
             if not subject:
                 raise ValueError("Subject is required for comprehensive research")
+            if not start_date:
+                raise ValueError("Start date is required")
+            if not end_date:
+                raise ValueError("End date is required")
+            
+            # Validate date range
+            start_dt, end_dt, recency_months = validate_date_range(start_date, end_date)
             
             # Create research inputs
             inputs = ResearchInputs(
@@ -185,8 +249,12 @@ async def handle_call_tool(
                 objective=arguments.get("objective", "comprehensive_analysis"),
                 depth=arguments.get("depth", "standard"),
                 max_sources=arguments.get("max_sources", 30),
-                recency_months=arguments.get("recency_months", 18),
-                constraints=arguments.get("constraints", {})
+                recency_months=recency_months,
+                constraints={
+                    "start_date": start_date,
+                    "end_date": end_date,
+                    **arguments.get("constraints", {})
+                }
             )
             
             # Conduct iterative research
@@ -199,8 +267,18 @@ async def handle_call_tool(
         
         elif name == "quick_research":
             subject = arguments.get("subject", "")
+            start_date = arguments.get("start_date", "")
+            end_date = arguments.get("end_date", "")
+            
             if not subject:
                 raise ValueError("Subject is required for quick research")
+            if not start_date:
+                raise ValueError("Start date is required")
+            if not end_date:
+                raise ValueError("End date is required")
+            
+            # Validate date range
+            start_dt, end_dt, recency_months = validate_date_range(start_date, end_date)
             
             # Use fast mode for quick research
             inputs = ResearchInputs(
@@ -208,7 +286,11 @@ async def handle_call_tool(
                 objective="comprehensive_analysis",
                 depth="fast",
                 max_sources=arguments.get("max_sources", 10),
-                recency_months=12
+                recency_months=recency_months,
+                constraints={
+                    "start_date": start_date,
+                    "end_date": end_date
+                }
             )
             
             report = await engine.conduct_research(inputs)
@@ -218,8 +300,18 @@ async def handle_call_tool(
         
         elif name == "best_options_research":
             need = arguments.get("need", "")
+            start_date = arguments.get("start_date", "")
+            end_date = arguments.get("end_date", "")
+            
             if not need:
                 raise ValueError("Need is required for best options research")
+            if not start_date:
+                raise ValueError("Start date is required")
+            if not end_date:
+                raise ValueError("End date is required")
+            
+            # Validate date range
+            start_dt, end_dt, recency_months = validate_date_range(start_date, end_date)
             
             # Configure for best options analysis
             inputs = ResearchInputs(
@@ -227,8 +319,10 @@ async def handle_call_tool(
                 objective="best_options",
                 depth="standard",
                 max_sources=arguments.get("max_sources", 25),
-                recency_months=12,
+                recency_months=recency_months,
                 constraints={
+                    "start_date": start_date,
+                    "end_date": end_date,
                     "criteria": arguments.get("criteria", ["effectiveness", "reliability", "ease of use"]),
                     "max_options": arguments.get("max_options", 5),
                     **arguments.get("constraints", {})

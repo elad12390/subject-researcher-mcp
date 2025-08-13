@@ -11,13 +11,27 @@ import traceback
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 # Import server components
-from subject_researcher_mcp.server import (
-    server,
-    duckduckgo_search,
-    analyze_with_gemini,
-    handle_list_tools,
-    handle_call_tool
-)
+try:
+    from subject_researcher_mcp.server import (
+        server,
+        handle_list_tools,
+        handle_call_tool,
+        validate_date_range
+    )
+except ImportError as e:
+    print(f"Warning: Could not import all server components: {e}")
+    # Fallback for testing
+    server = None
+    handle_list_tools = None
+    handle_call_tool = None
+    validate_date_range = None
+
+# Try importing specific functions
+try:
+    from subject_researcher_mcp.research_engine import ResearchEngine
+    research_engine_available = True
+except ImportError:
+    research_engine_available = False
 
 class TestRunner:
     """Comprehensive test runner for the MCP server."""
@@ -215,6 +229,7 @@ class TestRunner:
             ("Performance", self.test_performance),
             ("Concurrent Requests", self.test_concurrent_requests),
             ("Edge Cases", self.test_edge_cases),
+            ("Date Validation Tests", self.test_date_validation),
         ]
         
         # Run all tests
