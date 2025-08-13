@@ -63,7 +63,7 @@ Documentation = "https://github.com/elad12390/subject-researcher-mcp/wiki"
 Repository = "https://github.com/elad12390/subject-researcher-mcp.git"
 Issues = "https://github.com/elad12390/subject-researcher-mcp/issues"
 PyPI = "https://pypi.org/project/subject-researcher-mcp/"
-Docker = "https://hub.docker.com/r/elad12390/subject-researcher-mcp"
+Docker = "https://hub.docker.com/r/eladiut/subject-researcher-mcp"
 
 [build-system]
 requires = ["hatchling"]

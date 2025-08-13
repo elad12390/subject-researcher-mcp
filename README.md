@@ -4,7 +4,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI version](https://badge.fury.io/py/subject-researcher-mcp.svg)](https://badge.fury.io/py/subject-researcher-mcp)
-[![Docker Hub](https://img.shields.io/docker/v/elad12390/subject-researcher-mcp?label=docker&logo=docker)](https://hub.docker.com/r/elad12390/subject-researcher-mcp)
+[![Docker Hub](https://img.shields.io/docker/v/eladiut/subject-researcher-mcp?label=docker&logo=docker)](https://hub.docker.com/r/eladiut/subject-researcher-mcp)
 
 > **Advanced iterative target-driven research with multi-vertical search, sophisticated claim mining, and evidence-based synthesis**
 
@@ -12,9 +12,9 @@
 
 ### 🐳 Docker (Recommended)
 ```bash
-docker run --rm -i elad12390/subject-researcher-mcp:latest
+docker run --rm -i eladiut/subject-researcher-mcp:latest
 ```
-**🔗 [View on Docker Hub](https://hub.docker.com/r/elad12390/subject-researcher-mcp)**
+**🔗 [View on Docker Hub](https://hub.docker.com/r/eladiut/subject-researcher-mcp)**
 
 *Docker will automatically pull the image if not already available locally.*
 
@@ -75,7 +75,7 @@ The easiest way to use the Enhanced Subject Researcher MCP is with Docker - no P
 
 ```bash
 # Run the MCP server directly (Docker will pull image automatically)
-docker run --rm -i elad12390/subject-researcher-mcp:latest
+docker run --rm -i eladiut/subject-researcher-mcp:latest
 ```
 
 ### Alternative: Python Installation
@@ -145,7 +145,7 @@ asyncio.run(research_example())
            "run",
            "--rm",
            "-i",
-           "elad12390/subject-researcher-mcp:latest"
+           "eladiut/subject-researcher-mcp:latest"
          ],
          "env": {
            "GEMINI_API_KEY": "your-optional-gemini-api-key"
@@ -198,7 +198,7 @@ asyncio.run(research_example())
            "run",
            "--rm", 
            "-i",
-           "elad12390/subject-researcher-mcp:latest"
+           "eladiut/subject-researcher-mcp:latest"
          ],
          "enabled": true,
          "env": {
@@ -246,7 +246,7 @@ asyncio.run(research_example())
 ```bash
 # Using Docker (Recommended)
 claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
-  -- docker run --rm -i elad12390/subject-researcher-mcp:latest
+  -- docker run --rm -i eladiut/subject-researcher-mcp:latest
 
 # Or using Python
 claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
@@ -260,7 +260,7 @@ claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
    claude mcp add-json subject-researcher '{
      "type":"stdio",
      "command":"docker",
-     "args":["run","--rm","-i","elad12390/subject-researcher-mcp:latest"],
+     "args":["run","--rm","-i","eladiut/subject-researcher-mcp:latest"],
      "env":{"GEMINI_API_KEY":"your-optional-key"}
    }'
    ```
@@ -284,7 +284,7 @@ claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
            "run",
            "--rm",
            "-i", 
-           "elad12390/subject-researcher-mcp:latest"
+           "eladiut/subject-researcher-mcp:latest"
          ],
          "enabled": true,
          "environment": {
@@ -577,7 +577,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Issues**: [GitHub Issues](https://github.com/elad12390/subject-researcher-mcp/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/elad12390/subject-researcher-mcp/discussions)
 - **PyPI Package**: [subject-researcher-mcp](https://pypi.org/project/subject-researcher-mcp/)
-- **Docker Hub**: [elad12390/subject-researcher-mcp](https://hub.docker.com/r/elad12390/subject-researcher-mcp)
+- **Docker Hub**: [eladiut/subject-researcher-mcp](https://hub.docker.com/r/eladiut/subject-researcher-mcp)
 
 ---
 

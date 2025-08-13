@@ -190,7 +190,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: elad12390/subject-researcher-mcp
+        images: eladiut/subject-researcher-mcp
         tags: |
           type=ref,event=branch
           type=ref,event=pr
