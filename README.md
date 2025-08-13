@@ -12,9 +12,11 @@
 
 ### 🐳 Docker (Recommended)
 ```bash
-docker pull elad12390/subject-researcher-mcp:latest
+docker run --rm -i elad12390/subject-researcher-mcp:latest
 ```
 **🔗 [View on Docker Hub](https://hub.docker.com/r/elad12390/subject-researcher-mcp)**
+
+*Docker will automatically pull the image if not already available locally.*
 
 ### 📦 PyPI Package
 ```bash
@@ -72,10 +74,7 @@ The easiest way to use the Enhanced Subject Researcher MCP is with Docker - no P
 - ✅ **Latest version** - Always get the most recent release automatically
 
 ```bash
-# Pull the latest Docker image
-docker pull elad12390/subject-researcher-mcp:latest
-
-# Test the server (optional)
+# Run the MCP server directly (Docker will pull image automatically)
 docker run --rm -i elad12390/subject-researcher-mcp:latest
 ```
 
@@ -131,12 +130,7 @@ asyncio.run(research_example())
 
 **🐳 Recommended: Docker Method (Easiest)**
 
-1. **Pull the Docker image:**
-   ```bash
-   docker pull elad12390/subject-researcher-mcp:latest
-   ```
-
-2. **Configure Claude Desktop:**
+1. **Configure Claude Desktop:**
    - Open Claude Desktop
    - Click the Claude menu → Settings
    - Go to Developer tab → Edit Config
@@ -161,7 +155,9 @@ asyncio.run(research_example())
    }
    ```
 
-3. **Restart Claude Desktop** and look for the MCP server indicator (🔌) in the chat input.
+2. **Restart Claude Desktop** and look for the MCP server indicator (🔌) in the chat input.
+
+*Note: Docker will automatically pull the image when first used.*
 
 **📦 Alternative: Python Method**
 
@@ -189,12 +185,7 @@ asyncio.run(research_example())
 
 **🐳 Recommended: Docker Method (Easiest)**
 
-1. **Pull the Docker image:**
-   ```bash
-   docker pull elad12390/subject-researcher-mcp:latest
-   ```
-
-2. **Configure Cursor:**
+1. **Configure Cursor:**
    - Create `.cursor/mcp.json` in your project root (or `~/.cursor/mcp.json` for global access)
    - Add this configuration:
 
@@ -218,10 +209,12 @@ asyncio.run(research_example())
    }
    ```
 
-3. **Usage in Cursor:**
+2. **Usage in Cursor:**
    - Open the Composer Agent
    - MCP tools will be listed under "Available Tools"
    - Ask for research using natural language
+
+*Note: Docker will automatically pull the image when first used.*
 
 **📦 Alternative: Python Method**
 
@@ -262,12 +255,7 @@ claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
 
 **🔧 Manual Configuration**
 
-1. **Pull the Docker image:**
-   ```bash
-   docker pull elad12390/subject-researcher-mcp:latest
-   ```
-
-2. **Add manually via JSON:**
+1. **Add manually via JSON:**
    ```bash
    claude mcp add-json subject-researcher '{
      "type":"stdio",
@@ -281,12 +269,7 @@ claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
 
 **🐳 Recommended: Docker Method (Easiest)**
 
-1. **Pull the Docker image:**
-   ```bash
-   docker pull elad12390/subject-researcher-mcp:latest
-   ```
-
-2. **Configure OpenCode:**
+1. **Configure OpenCode:**
    - In your project directory, edit `opencode.json`
    - Add this to the configuration:
 
@@ -312,9 +295,11 @@ claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
    }
    ```
 
-3. **Usage in OpenCode:**
+2. **Usage in OpenCode:**
    - MCP tools are automatically available to the LLM
    - Ask for research and OpenCode will use the tools as needed
+
+*Note: Docker will automatically pull the image when first used.*
 
 **📦 Alternative: Python Method**
 
