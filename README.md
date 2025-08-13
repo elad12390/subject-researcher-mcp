@@ -130,7 +130,10 @@ asyncio.run(research_example())
            "--rm",
            "-i",
            "elad12390/subject-researcher-mcp:latest"
-         ]
+         ],
+         "env": {
+           "GEMINI_API_KEY": "your-optional-gemini-api-key"
+         }
        }
      }
    }
@@ -151,7 +154,10 @@ asyncio.run(research_example())
      "mcpServers": {
        "subject-researcher": {
          "command": "python",
-         "args": ["-m", "subject_researcher_mcp.server"]
+         "args": ["-m", "subject_researcher_mcp.server"],
+         "env": {
+           "GEMINI_API_KEY": "your-optional-gemini-api-key"
+         }
        }
      }
    }
@@ -181,7 +187,10 @@ asyncio.run(research_example())
            "-i",
            "elad12390/subject-researcher-mcp:latest"
          ],
-         "enabled": true
+         "enabled": true,
+         "env": {
+           "GEMINI_API_KEY": "your-optional-gemini-api-key"
+         }
        }
      }
    }
@@ -206,10 +215,44 @@ asyncio.run(research_example())
        "subject-researcher": {
          "command": "python",
          "args": ["-m", "subject_researcher_mcp.server"],
-         "enabled": true
+         "enabled": true,
+         "env": {
+           "GEMINI_API_KEY": "your-optional-gemini-api-key"
+         }
        }
      }
    }
+   ```
+
+### Claude Code
+
+**🚀 Command-Line Method (Easiest)**
+
+```bash
+# Using Docker (Recommended)
+claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
+  -- docker run --rm -i elad12390/subject-researcher-mcp:latest
+
+# Or using Python
+claude mcp add subject-researcher --env GEMINI_API_KEY=your-optional-key \
+  -- python -m subject_researcher_mcp.server
+```
+
+**🔧 Manual Configuration**
+
+1. **Pull the Docker image:**
+   ```bash
+   docker pull elad12390/subject-researcher-mcp:latest
+   ```
+
+2. **Add manually via JSON:**
+   ```bash
+   claude mcp add-json subject-researcher '{
+     "type":"stdio",
+     "command":"docker",
+     "args":["run","--rm","-i","elad12390/subject-researcher-mcp:latest"],
+     "env":{"GEMINI_API_KEY":"your-optional-key"}
+   }'
    ```
 
 ### OpenCode
@@ -238,7 +281,10 @@ asyncio.run(research_example())
            "-i", 
            "elad12390/subject-researcher-mcp:latest"
          ],
-         "enabled": true
+         "enabled": true,
+         "environment": {
+           "GEMINI_API_KEY": "your-optional-gemini-api-key"
+         }
        }
      }
    }
@@ -263,7 +309,10 @@ asyncio.run(research_example())
        "subject-researcher": {
          "type": "local",
          "command": ["python", "-m", "subject_researcher_mcp.server"],
-         "enabled": true
+         "enabled": true,
+         "environment": {
+           "GEMINI_API_KEY": "your-optional-gemini-api-key"
+         }
        }
      }
    }
@@ -282,6 +331,16 @@ The MCP server provides these tools:
 - `conduct_iterative_research` - Full 11-phase research methodology
 - `conduct_research` - Basic multi-source research
 - `analyze_research_quality` - Quality assessment of research results
+
+## 🔑 Environment Variables
+
+The Subject Researcher MCP supports the following optional environment variables:
+
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| `GEMINI_API_KEY` | Google Gemini API key for enhanced analysis and synthesis | No | Not used |
+
+**Note:** The research engine works fully without any API keys, using free search APIs. The Gemini API key is only used for optional enhanced analysis features.
 
 ### Direct MCP Server Usage
 
