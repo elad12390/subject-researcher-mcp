@@ -85,7 +85,115 @@ async def research_example():
 asyncio.run(research_example())
 ```
 
-### MCP Server Usage
+## 🔧 Installation for AI Editors
+
+### Claude Desktop
+
+1. **Install the package:**
+   ```bash
+   pip install subject-researcher-mcp
+   ```
+
+2. **Configure Claude Desktop:**
+   - Open Claude Desktop
+   - Click the Claude menu → Settings
+   - Go to Developer tab → Edit Config
+   - Add this configuration:
+
+   ```json
+   {
+     "mcpServers": {
+       "subject-researcher": {
+         "command": "python",
+         "args": [
+           "-m", 
+           "subject_researcher_mcp.server"
+         ]
+       }
+     }
+   }
+   ```
+
+3. **Restart Claude Desktop** and look for the MCP server indicator (🔌) in the chat input.
+
+### Cursor IDE
+
+1. **Install the package:**
+   ```bash
+   pip install subject-researcher-mcp
+   ```
+
+2. **Configure Cursor:**
+   - Create `.cursor/mcp.json` in your project root (or `~/.cursor/mcp.json` for global access)
+   - Add this configuration:
+
+   ```json
+   {
+     "mcpServers": {
+       "subject-researcher": {
+         "command": "python",
+         "args": [
+           "-m", 
+           "subject_researcher_mcp.server"
+         ],
+         "enabled": true
+       }
+     }
+   }
+   ```
+
+3. **Usage in Cursor:**
+   - Open the Composer Agent
+   - MCP tools will be listed under "Available Tools"
+   - Ask for research using natural language
+
+### OpenCode
+
+1. **Install the package:**
+   ```bash
+   pip install subject-researcher-mcp
+   ```
+
+2. **Configure OpenCode:**
+   - In your project directory, edit `opencode.json`
+   - Add this to the configuration:
+
+   ```json
+   {
+     "$schema": "https://opencode.ai/config.json",
+     "mcp": {
+       "subject-researcher": {
+         "type": "local",
+         "command": [
+           "python", 
+           "-m", 
+           "subject_researcher_mcp.server"
+         ],
+         "enabled": true
+       }
+     }
+   }
+   ```
+
+3. **Usage in OpenCode:**
+   - MCP tools are automatically available to the LLM
+   - Ask for research and OpenCode will use the tools as needed
+
+## 📖 MCP Server Usage
+
+Once configured in your AI editor, you can use natural language to request research:
+
+**Example requests:**
+- "Research the latest developments in quantum computing applications"
+- "Analyze current best practices for microservices architecture"
+- "Investigate recent security vulnerabilities in popular Python packages"
+
+The MCP server provides these tools:
+- `conduct_iterative_research` - Full 11-phase research methodology
+- `conduct_research` - Basic multi-source research
+- `analyze_research_quality` - Quality assessment of research results
+
+### Direct MCP Server Usage
 
 ```bash
 # Start the MCP server
