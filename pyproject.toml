@@ -1,6 +1,6 @@
 [project]
 name = "subject-researcher-mcp"
-version = "2.0.0"
+version = "0.2.0"
 description = "Enhanced Subject Researcher MCP - Iterative target-driven research with multi-vertical search, quality metrics, and sophisticated claim mining"
 readme = "README.md"
 license = {text = "MIT"}
