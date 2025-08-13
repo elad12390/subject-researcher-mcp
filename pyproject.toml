@@ -58,10 +58,12 @@ performance = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-org/subject-researcher-mcp"
-Documentation = "https://github.com/your-org/subject-researcher-mcp/wiki"
-Repository = "https://github.com/your-org/subject-researcher-mcp.git"
-Issues = "https://github.com/your-org/subject-researcher-mcp/issues"
+Homepage = "https://github.com/elad12390/subject-researcher-mcp"
+Documentation = "https://github.com/elad12390/subject-researcher-mcp/wiki"
+Repository = "https://github.com/elad12390/subject-researcher-mcp.git"
+Issues = "https://github.com/elad12390/subject-researcher-mcp/issues"
+PyPI = "https://pypi.org/project/subject-researcher-mcp/"
+Docker = "https://hub.docker.com/r/elad12390/subject-researcher-mcp"
 
 [build-system]
 requires = ["hatchling"]

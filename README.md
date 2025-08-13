@@ -1,11 +1,31 @@
 # 🚀 Enhanced Subject Researcher MCP
 
-[![CI/CD Pipeline](https://github.com/your-org/subject-researcher-mcp/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/your-org/subject-researcher-mcp/actions)
+[![CI/CD Pipeline](https://github.com/elad12390/subject-researcher-mcp/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/elad12390/subject-researcher-mcp/actions)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI version](https://badge.fury.io/py/subject-researcher-mcp.svg)](https://badge.fury.io/py/subject-researcher-mcp)
+[![Docker Hub](https://img.shields.io/docker/v/elad12390/subject-researcher-mcp?label=docker&logo=docker)](https://hub.docker.com/r/elad12390/subject-researcher-mcp)
 
 > **Advanced iterative target-driven research with multi-vertical search, sophisticated claim mining, and evidence-based synthesis**
+
+## 📦 Installation
+
+### 🐳 Docker (Recommended)
+```bash
+docker pull elad12390/subject-researcher-mcp:latest
+```
+**🔗 [View on Docker Hub](https://hub.docker.com/r/elad12390/subject-researcher-mcp)**
+
+### 📦 PyPI Package
+```bash
+pip install subject-researcher-mcp
+```
+**🔗 [View on PyPI](https://pypi.org/project/subject-researcher-mcp/)**
+
+### 🔄 Version Notes
+**Current Version**: v0.2.0 with **mandatory date validation** for all research operations
+
+**⚠️ BREAKING CHANGE**: All research tools now require `start_date` and `end_date` parameters in YYYY-MM-DD format.
 
 ## ✨ Features
 
@@ -74,9 +94,11 @@ from subject_researcher_mcp import ResearchEngine, ResearchInputs
 async def research_example():
     engine = ResearchEngine()
     
-    # Configure research parameters
+    # Configure research parameters (v0.2.0+ requires date parameters)
     inputs = ResearchInputs(
         subject="Python async programming best practices",
+        start_date="2024-01-01",  # Required: YYYY-MM-DD format
+        end_date="2025-01-13",    # Required: YYYY-MM-DD format
         objective="comprehensive_analysis",
         max_sources=15,
         constraints={
@@ -363,7 +385,7 @@ docker run -p 8000:8000 your-org/subject-researcher-mcp:latest
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/subject-researcher-mcp.git
+git clone https://github.com/elad12390/subject-researcher-mcp.git
 cd subject-researcher-mcp
 
 # Install in development mode
@@ -566,10 +588,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Documentation**: [GitHub Wiki](https://github.com/your-org/subject-researcher-mcp/wiki)
-- **Issues**: [GitHub Issues](https://github.com/your-org/subject-researcher-mcp/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/subject-researcher-mcp/discussions)
-- **Email**: research-support@your-org.com
+- **Documentation**: [GitHub Wiki](https://github.com/elad12390/subject-researcher-mcp/wiki)
+- **Issues**: [GitHub Issues](https://github.com/elad12390/subject-researcher-mcp/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/elad12390/subject-researcher-mcp/discussions)
+- **PyPI Package**: [subject-researcher-mcp](https://pypi.org/project/subject-researcher-mcp/)
+- **Docker Hub**: [elad12390/subject-researcher-mcp](https://hub.docker.com/r/elad12390/subject-researcher-mcp)
 
 ---
 
